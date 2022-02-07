@@ -1,0 +1,21 @@
+.calculator {
+   display: grid;
+   grid-template-rows: 1fr 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr;
+   max-width: 400px;
+   margin: 50px auto;
+}
+.calculator-item {
+   border: 2px solid rgb(43, 82, 73);
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.calculator-input {
+   max-width: 600px;
+   height: 50px;
+   font-size: 20px;
+   text-align: center;
+   margin: 50px 0 0 0;
+}

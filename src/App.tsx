@@ -1,13 +1,16 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Calculator from './components/Calculator/Calculator';
-import Navbar from './components/Navbar/Navbar';
+import Expenses from './components/Expenses/Expenses';
+import Login from './components/Login/Login';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Navbar />
-      <Calculator />
+      <Routes>
+        <Route path='/' element={<Expenses />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
     </div>
   );
 }

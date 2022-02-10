@@ -11,6 +11,15 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   margin: 2px;
+   :hover {
+      background: rgb(238, 211, 220);
+      border: 2px solid rgb(226, 233, 231);
+   }
+   :active {
+      background: rgb(238, 211, 220);
+      border: 2px solid rgb(226, 233, 231);
+   }
 }
 .calculator-input {
    max-width: 600px;

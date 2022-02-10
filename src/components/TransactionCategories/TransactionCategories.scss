@@ -1,0 +1,15 @@
+.transaction-categories {
+   display: flex;
+   flex-direction: row;
+   width: 100px;
+   height: 100px;
+   justify-content: center;
+   align-items: center;
+   margin: 0 auto;
+   :hover {
+      background: rgb(228, 219, 211);
+   }
+}
+.transaction-icon {
+   margin: 10px;
+}

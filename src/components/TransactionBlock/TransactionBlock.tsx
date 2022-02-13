@@ -1,16 +1,20 @@
 import React from "react";
 import './TransactionBlock.scss'
 
-const TransactionBlock: React.FC<{ name: any, date: any, count: number }> = ({ name, date, count }) => {
+const TransactionBlock: React.FC<{ name: any, date: any, count: number, color: string }> = ({ name, date, count, color }) => {
 
+   // const divStyles: CSS.Properties = {
 
+   // }
 
-   return <div className="kard-action">
+   return <div
+      className="kard-action"
+   // style={divStyles}
+   >
       <div>{name}</div>
-
       <span>{count}</span>
       <span>{date}</span>
-   </div>
+   </div >
 }
 
 export default TransactionBlock

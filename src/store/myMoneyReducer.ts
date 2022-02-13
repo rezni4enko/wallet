@@ -1,5 +1,5 @@
-const CHANGE_MY_MONEY_VALUE = 'CHANGE_MY_MONEY_VALUE'
-
+const POSITIVE_CHANGE_MY_MONEY_VALUE = 'POSITIVE_CHANGE_MY_MONEY_VALUE'
+const NEGATIVE_CHANGE_MY_MONEY_VALUE = 'NEGATIVE_CHANGE_MY_MONEY_VALUE'
 
 interface myMoneyState {
    money: number;
@@ -17,10 +17,15 @@ const initialState: myMoneyState = {
 
 const myMoneyReducer = (state = initialState, action: myMoneyAction): myMoneyState => {
    switch (action.type) {
-      case CHANGE_MY_MONEY_VALUE:
+      case POSITIVE_CHANGE_MY_MONEY_VALUE:
          return {
             ...state,
             money: (state.money + action.payload)
+         }
+      case NEGATIVE_CHANGE_MY_MONEY_VALUE:
+         return {
+            ...state,
+            money: (state.money - action.payload)
          }
       default:
          return state

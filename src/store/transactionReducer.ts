@@ -1,7 +1,8 @@
 const CREATE_TRANSACTION_CARD = 'CREATE_TRANSACTION_CARD'
 
 interface TransactionState {
-   transactions: any[]
+   transactions: any[],
+   color: string
 }
 
 interface TransactionAction {
@@ -12,7 +13,8 @@ interface TransactionAction {
 const initialState: TransactionState = {
    transactions: [
       // { name: '', count: '', date: '', },
-   ]
+   ],
+   color: ''
 }
 
 const transactionReducer = (state = initialState, action: TransactionAction): TransactionState => {
@@ -24,7 +26,8 @@ const transactionReducer = (state = initialState, action: TransactionAction): Tr
                name: action.payload.item,
                count: action.payload.currentValue,
                date: Date.now()
-            }]
+            }],
+            color: action.payload.color
          }
       default:
          return state

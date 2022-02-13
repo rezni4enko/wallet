@@ -15,5 +15,10 @@
    align-items: center;
 }
 .navbar-item {
+   list-style-type: none;
    margin: 0 10px 0 0;
+   cursor: pointer;
+   :hover {
+      background: rgb(228, 219, 211);
+   }
 }

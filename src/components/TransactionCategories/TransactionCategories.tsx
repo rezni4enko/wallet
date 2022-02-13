@@ -8,17 +8,39 @@ const TransactionCategories: React.FC = () => {
    const dispatch = useDispatch()
    const transaction = useSelector((state: any) => state.transactionReducer.transactions)
    const currentValue = useSelector((state: any) => state.calculateReducer.value)
+   const expenses = useSelector((state: any) => state.transactionCategoriesReducer.expenses)
+   const income = useSelector((state: any) => state.transactionCategoriesReducer.income)
+   const isIncome = useSelector((state: any) => state.transactionCategoriesReducer.isIncome)
 
-   const createTransaction = (item: any) => {
+   const createPositiveTransaction = (item: any) => {
       dispatch({
-         type: 'CHANGE_MY_MONEY_VALUE',
+         type: 'POSITIVE_CHANGE_MY_MONEY_VALUE',
          payload: +currentValue
       })
       dispatch({
          type: 'CREATE_TRANSACTION_CARD',
          payload: {
             item: item,
-            currentValue: currentValue
+            currentValue: currentValue,
+            color: 'green'
+         }
+      })
+      dispatch({
+         type: 'ZEROING_CALCULATE_VALUE',
+         payload: item
+      })
+   }
+   const createNegativeTransaction = (item: any) => {
+      dispatch({
+         type: 'NEGATIVE_CHANGE_MY_MONEY_VALUE',
+         payload: +currentValue
+      })
+      dispatch({
+         type: 'CREATE_TRANSACTION_CARD',
+         payload: {
+            item: item,
+            currentValue: currentValue,
+            color: 'red'
          }
       })
       dispatch({
@@ -27,23 +49,25 @@ const TransactionCategories: React.FC = () => {
       })
    }
 
-   const arrTransactions = [
-      'Зарплата',
-      'Подарки',
-      'Подработка',
-      'Депозит',
-      'Выйгрыш',
-   ]
-
    return <div>
-      <div className="transaction-categories">{arrTransactions.map((item, index) =>
-         <span
-            className="transaction-icon"
-            key={index}
-            onClick={() => createTransaction(item)
-            }>{item}</span>)
+      {isIncome
+         ? <div className="transaction-categories">{income.map((item: string, index: number) =>
+            <span
+               className="transaction-icon"
+               key={index}
+               onClick={() => createNegativeTransaction(item)
+               }>{item}</span>)}
+         </div>
+         : <div className="transaction-categories">{expenses.map((item: string, index: number) =>
+            <span
+               className="transaction-icon"
+               key={index}
+               onClick={() => createPositiveTransaction(item)
+               }>{item}</span>)}
+         </div>
       }
-      </div>{transaction.map((t: any, index: number) => <TransactionBlock
+      {transaction.map((t: any, index: number) => <TransactionBlock
+         color={t.color}
          name={t.name}
          key={index}
          date={t.date}

@@ -1,20 +1,22 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import './TransactionBlock.scss'
 
-const TransactionBlock: React.FC<{ name: any, date: any, count: number, color: string }> = ({ name, date, count, color }) => {
+const TransactionBlock: React.FC<{ name: any, date: any, count: number, color: string, id: number }>
+   = ({ name, date, count, color, id }) => {
 
-   // const divStyles: CSS.Properties = {
+      // const divStyles: CSS.Properties = {
 
-   // }
+      // }
 
-   return <div
-      className="kard-action"
-   // style={divStyles}
-   >
-      <div>{name}</div>
-      <span>{count}</span>
-      <span>{date}</span>
-   </div >
-}
+      return <NavLink to={`/transaction/${id}`}
+         className={`card-action ${color}-card`}
+
+      >
+         <div>{name}</div>
+         <span>{count}</span>
+         <span>{date}</span>
+      </NavLink >
+   }
 
 export default TransactionBlock

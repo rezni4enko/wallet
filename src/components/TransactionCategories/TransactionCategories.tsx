@@ -72,6 +72,7 @@ const TransactionCategories: React.FC = () => {
          key={index}
          date={t.date}
          count={t.count}
+         id={t.id}
       />)}
    </div>
 }

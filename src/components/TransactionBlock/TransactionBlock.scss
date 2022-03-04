@@ -1,9 +1,15 @@
-.kard-action {
-   border: 1px solid #a2d;
+.card-action {
    width: 600px;
    height: 50px;
    margin: 10px auto;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   border-radius: 2px;
+}
+.red-card {
+   border: 2px solid rgb(221, 56, 34);
+}
+.green-card {
+   border: 2px solid rgb(87, 221, 34);
 }

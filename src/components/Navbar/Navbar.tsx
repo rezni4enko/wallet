@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import './Navbar.scss'
 
 const Navbar: React.FC = () => {
 
-   // const isIncome = useSelector((state: any) => state.transactionCategoriesReducer.isIncome)
    const dispatch = useDispatch()
 
    const changeIsIncome = (bool: boolean) => {
@@ -15,12 +15,12 @@ const Navbar: React.FC = () => {
    }
 
    return <nav className="navbar">
-      <ul className="navbar-list">
-         <li className="navbar-item"><span onClick={() => changeIsIncome(true)}>Расходы</span></li>
-         <li className="navbar-item"><span onClick={() => changeIsIncome(false)}>Доходы</span></li>
-      </ul>
-      <span className="navbar-item"><a href="">Статистика</a></span>
+      <div className="navbar-list">
+         <NavLink to='/*' className="navbar-item"><span onClick={() => changeIsIncome(true)}>Расходы</span></NavLink>
+         <NavLink to='/*' className="navbar-item"><span onClick={() => changeIsIncome(false)}>Доходы</span></NavLink>
+      </div>
+      <NavLink to='/statistics' className="navbar-item">Статистика</NavLink>
    </nav>
 }
 
-export default Navbar 
+export default Navbar  

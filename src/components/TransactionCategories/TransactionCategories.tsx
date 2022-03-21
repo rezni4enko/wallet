@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TransactionBlock from "../TransactionBlock/TransactionBlock";
 import './TransactionCategories.scss'
@@ -6,72 +6,98 @@ import './TransactionCategories.scss'
 const TransactionCategories: React.FC = () => {
 
    const dispatch = useDispatch()
-   const transaction = useSelector((state: any) => state.transactionReducer.transactions)
+   const transaction = useSelector((state: any) => state.transactionReducer)
    const currentValue = useSelector((state: any) => state.calculateReducer.value)
-   const expenses = useSelector((state: any) => state.transactionCategoriesReducer.expenses)
-   const income = useSelector((state: any) => state.transactionCategoriesReducer.income)
+   const transactionCategories = useSelector((state: any) => state.transactionCategoriesReducer.expensesCategory)
    const isIncome = useSelector((state: any) => state.transactionCategoriesReducer.isIncome)
 
-   const createPositiveTransaction = (item: any) => {
+   const getTransactions = () => {
       dispatch({
-         type: 'POSITIVE_CHANGE_MY_MONEY_VALUE',
-         payload: +currentValue
-      })
-      dispatch({
-         type: 'CREATE_TRANSACTION_CARD',
-         payload: {
-            item: item,
-            currentValue: currentValue,
-            color: 'green'
-         }
-      })
-      dispatch({
-         type: 'ZEROING_CALCULATE_VALUE',
-         payload: item
-      })
-   }
-   const createNegativeTransaction = (item: any) => {
-      dispatch({
-         type: 'NEGATIVE_CHANGE_MY_MONEY_VALUE',
-         payload: +currentValue
-      })
-      dispatch({
-         type: 'CREATE_TRANSACTION_CARD',
-         payload: {
-            item: item,
-            currentValue: currentValue,
-            color: 'red'
-         }
-      })
-      dispatch({
-         type: 'ZEROING_CALCULATE_VALUE',
-         payload: item
+         type: 'LOAD_TRANSACTIONS_REQUEST'
       })
    }
 
-   return <div>
-      {isIncome
-         ? <div className="transaction-categories">{income.map((item: string, index: number) =>
-            <span
-               className="transaction-icon"
-               key={index}
-               onClick={() => createNegativeTransaction(item)
-               }>{item}</span>)}
-         </div>
-         : <div className="transaction-categories">{expenses.map((item: string, index: number) =>
-            <span
-               className="transaction-icon"
-               key={index}
-               onClick={() => createPositiveTransaction(item)
-               }>{item}</span>)}
-         </div>
+   const getExpensesCategory = () => {
+      dispatch({
+         type: 'LOAD_EXPENSES_CATEGORY_REQUEST'
+      })
+   }
+
+   const getIncomeCategory = () => {
+
+      dispatch({
+         type: 'LOAD_EXPENSES_CATEGORY_REQUEST'
+      })
+   }
+
+   useEffect(() => getTransactions(), [])
+   useEffect(() => getIncomeCategory(), [])
+   // useEffect(() => getExpensesCategory(), [])
+
+   const createTransactionCard = async (item: any) => {
+      const transactonCard = {
+         transactionCategory: item.transactionCategory,
+         comment: '',
+         transactionValue: currentValue
       }
+      dispatch({
+         type: 'CREATE_TRANSACTION_CARD',
+         payload: transactonCard
+      })
+   }
+
+   // const createPositiveTransaction = (item: any) => {
+   //    dispatch({
+   //       type: 'POSITIVE_CHANGE_MY_MONEY_VALUE',
+   //       payload: +currentValue
+   //    })
+   //    dispatch({
+   //       type: 'CREATE_TRANSACTION_CARD',
+   //       payload: {
+   //          item: item,
+   //          currentValue: currentValue,
+   //          color: 'green'
+   //       }
+   //    })
+   //    dispatch({
+   //       type: 'ZEROING_CALCULATE_VALUE',
+   //       payload: item
+   //    })
+   // }
+   // const createNegativeTransaction = (item: any) => {
+   //    dispatch({
+   //       type: 'NEGATIVE_CHANGE_MY_MONEY_VALUE',
+   //       payload: +currentValue
+   //    })
+   //    dispatch({
+   //       type: 'CREATE_TRANSACTION_CARD',
+   //       payload: {
+   //          item: item,
+   //          currentValue: currentValue,
+   //          color: 'red'
+   //       }
+   //    })
+   //    dispatch({
+   //       type: 'ZEROING_CALCULATE_VALUE',
+   //       payload: item
+   //    })
+   // }
+
+   return <div>
+      <div className="transaction-categories">{
+
+         transactionCategories.map((item: any, index: number) =>
+            <span
+               className="transaction-icon"
+               key={index}
+               onClick={() => createTransactionCard(item)
+               }>{item.transactionCategory}</span>)
+      }
+      </div>
       {transaction.map((t: any, index: number) => <TransactionBlock
-         color={t.color}
-         name={t.name}
-         key={index}
-         date={t.date}
-         count={t.count}
+         transactionCategory={t.transactionCategory}
+         key={t.id}
+         transactionValue={t.transactionValue}
          id={t.id}
       />)}
    </div>

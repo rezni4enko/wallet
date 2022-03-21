@@ -1,9 +1,10 @@
-const CREATE_TRANSACTION_CARD = 'CREATE_TRANSACTION_CARD'
-const CHANGE_CATEGORY_TRANSACTION_CARD = 'CHANGE_CATEGORY_TRANSACTION_CARD'
+const SET_TRANSACTION_REQUEST_CARD = 'SET_TRANSACTION_REQUEST_CARD'
 
 interface TransactionState {
-   transactions: any[],
-
+   transactionCategory: string
+   isIncome: boolean
+   defaultValue: boolean
+   inMainPage: boolean
 }
 
 interface TransactionAction {
@@ -11,33 +12,14 @@ interface TransactionAction {
    payload?: any;
 }
 
-const initialState: TransactionState = {
-   transactions: [
-      // { id: null, name: '', count: '', date: '',  color: '' },
-   ],
+const initialState: Array<TransactionState> = [
+   { transactionCategory: '', isIncome: true, defaultValue: true, inMainPage: true }
+]
 
-}
-
-const transactionReducer = (state = initialState, action: TransactionAction): TransactionState => {
+const transactionReducer = (state = initialState, action: TransactionAction): Array<TransactionState> => {
    switch (action.type) {
-      case CREATE_TRANSACTION_CARD:
-         return {
-            ...state,
-            transactions: [...state.transactions, {
-               name: action.payload.item,
-               count: action.payload.currentValue,
-               date: Date.now(),
-               color: action.payload.color,
-               id: Date.now(),
-            }],
-         }
-      case CHANGE_CATEGORY_TRANSACTION_CARD:
-         return {
-            ...state,
-            transactions: [...state.transactions, {
-               name: action.payload,
-            }],
-         }
+      case SET_TRANSACTION_REQUEST_CARD:
+         return action.payload
       default:
          return state
    }

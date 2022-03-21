@@ -1,12 +1,17 @@
 .card-action {
-   width: 600px;
-   height: 50px;
-   margin: 10px auto;
+   border: 2px solid #123;
+   padding: 15px;
+   width: 500px;
+   height: 15px;
+   margin: 5px auto;
    display: flex;
    justify-content: space-between;
    align-items: center;
-   border-radius: 2px;
+   border-radius: 5px;
+   text-decoration: none;
+   color: #123;
 }
+
 .red-card {
    border: 2px solid rgb(221, 56, 34);
 }

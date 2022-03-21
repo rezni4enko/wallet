@@ -1,8 +1,13 @@
 .transaction-wrapper {
+   padding-top: 50px;
    max-width: 500px;
    margin: 0 auto;
+   font-size: 18px;
 }
 .transaction-line {
+   border: 2px solid #123;
+   border-radius: 5px;
+   padding: 15px;
    list-style-type: none;
    display: flex;
    justify-content: space-between;

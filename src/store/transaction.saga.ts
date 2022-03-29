@@ -1,6 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { createTransactionCardRequest, fetchAllTransactions, deleteTransactionCardRequest, fetchTransactionById } from '../API/transactionApi';
-import { transactionIdRequestDTO } from '../models/transactionIdRequest.dto';
 import { transactionsRequestDTO } from '../models/transactionsRequest.dto';
 
 // function* editTaskRequest(action: any) {
@@ -18,18 +17,18 @@ function* loadTransactonsRequest() {
       const transactions: transactionsRequestDTO[] = yield call(fetchAllTransactions)
       yield put({ type: 'SET_TRANSACTION_REQUEST_CARD', payload: transactions })
    } catch (e: any) {
-      yield put({ type: 'GET_USERS_FAILED', message: e.message })
+      console.log('error loadtransactionsRequest')
    }
 }
 
-// function* loadTransactonRequestById(action: any) {
-//    try {
-//       const transactionId:transactionsRequestDTO[] = yield call(fetchTransactionById(action.payload))
-//       yield put({ type: 'SET_TRANSACTION_REQUEST_BY_ID', payload: transactionId })
-//    } catch (e: any) {
-//       yield put({ type: 'GET_USERS_FAILED', message: e.message })
-//    }
-// }
+function* loadTransactonRequestById(action: any) {
+   try {
+      const transactionId: transactionsRequestDTO[] = yield call(fetchTransactionById, action.payload)
+      yield put({ type: 'SET_TRANSACTION_REQUEST_BY_ID', payload: transactionId })
+   } catch (e: any) {
+      yield put({ type: 'GET_USERS_FAILED', message: e.message })
+   }
+}
 
 function* createTransactionCard(action: any) {
    try {
@@ -55,6 +54,6 @@ export default function* transactionSaga() {
    yield takeEvery('LOAD_TRANSACTIONS_REQUEST', loadTransactonsRequest)
    yield takeEvery('CREATE_TRANSACTION_CARD', createTransactionCard)
    yield takeEvery('DELETE_TRANSACTION', deleteTransactionCard)
-   // yield takeEvery('LOAD_TRANSACTION_REQUEST_BY_ID', loadTransactonRequestById)
+   yield takeEvery('LOAD_TRANSACTION_REQUEST_BY_ID', loadTransactonRequestById)
    // yield takeEvery('EDIT_TASK', editTaskRequest)
 }

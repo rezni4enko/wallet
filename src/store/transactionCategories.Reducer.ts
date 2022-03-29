@@ -1,6 +1,5 @@
 const CHANGE_TRANSACTIONS_CATEGORIES = 'CHANGE_TRANSACTIONS_CATEGORIES'
-const SET_EXPENSES_CATEGORY_REQUEST = 'SET_EXPENSES_CATEGORY_REQUEST'
-const SET_INCOME_CATEGORY_REQUEST = 'SET_INCOME_CATEGORY_REQUEST'
+const SET_TRANSACTION_CATEGORY_REQUEST = 'SET_TRANSACTION_CATEGORY_REQUEST'
 
 interface TransactionCategoriesAction {
    type: string;
@@ -8,23 +7,17 @@ interface TransactionCategoriesAction {
 }
 
 const initialState: any = {
-   expensesCategory: [],
-   incomeCategory: [],
+   transactionCategory: [],
    isIncome: true,
 }
 
 const transactionCategoriesReducer =
    (state = initialState, action: any): any => {
       switch (action.type) {
-         case SET_EXPENSES_CATEGORY_REQUEST:
+         case SET_TRANSACTION_CATEGORY_REQUEST:
             return {
                ...state,
-               expensesCategory: action.payload
-            }
-         case SET_INCOME_CATEGORY_REQUEST:
-            return {
-               ...state,
-               expensesCategory: action.payload
+               transactionCategory: action.payload
             }
          case CHANGE_TRANSACTIONS_CATEGORIES:
             return {

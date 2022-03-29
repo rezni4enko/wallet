@@ -1,22 +1,13 @@
+import { fetchTransactionCategory } from './../API/transactionCategory.api';
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { fetchExpensesCategory, fetchIncomeCategory } from '../API/transactionCategory.api';
 import { transactionsRequestDTO } from '../models/transactionsRequest.dto';
 
-function* loadExpensesCategoryRequest() {
+function* loadTransactionCategoryRequest() {
    try {
-      const transactionCategory: transactionsRequestDTO[] = yield call(fetchExpensesCategory);
-      yield put({ type: 'SET_EXPENSES_CATEGORY_REQUEST', payload: transactionCategory })
+      const transactionCategory: transactionsRequestDTO[] = yield call(fetchTransactionCategory);
+      yield put({ type: 'SET_TRANSACTION_CATEGORY_REQUEST', payload: transactionCategory })
    } catch (e: any) {
-      yield put({ type: 'GET_USERS_FAILED', message: e.message })
-   }
-}
-
-function* loadIncomeCategoryRequest() {
-   try {
-      const transactionCategory: transactionsRequestDTO[] = yield call(fetchIncomeCategory);
-      yield put({ type: 'SET_INCOME_CATEGORY_REQUEST', payload: transactionCategory })
-   } catch (e: any) {
-      yield put({ type: 'GET_USERS_FAILED', message: e.message })
+      console.log('error get transaction category')
    }
 }
 
@@ -40,8 +31,7 @@ function* loadIncomeCategoryRequest() {
 // }
 
 export default function* transactionCategorySaga() {
-   yield takeEvery('LOAD_EXPENSES_CATEGORY_REQUEST', loadExpensesCategoryRequest)
-   yield takeEvery('LOAD_INCOME_CATEGORY_REQUEST', loadIncomeCategoryRequest)
+   yield takeEvery('LOAD_TRANSACTION_CATEGORY_REQUEST', loadTransactionCategoryRequest)
    // yield takeEvery('CREATE_TRANSACTION_CARD', createTransactionCard)
    // yield takeEvery('DELETE_TRANSACTION', deleteTransactionCard)
 }

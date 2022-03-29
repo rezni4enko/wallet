@@ -2,9 +2,10 @@ const SET_TRANSACTION_REQUEST_CARD = 'SET_TRANSACTION_REQUEST_CARD'
 
 interface TransactionState {
    transactionCategory: string
+   transactionValue: number | null
    isIncome: boolean
-   defaultValue: boolean
-   inMainPage: boolean
+   comment: string
+   idUser?: number
 }
 
 interface TransactionAction {
@@ -13,7 +14,7 @@ interface TransactionAction {
 }
 
 const initialState: Array<TransactionState> = [
-   { transactionCategory: '', isIncome: true, defaultValue: true, inMainPage: true }
+   { transactionCategory: '', isIncome: true, transactionValue: null, comment: '' }
 ]
 
 const transactionReducer = (state = initialState, action: TransactionAction): Array<TransactionState> => {

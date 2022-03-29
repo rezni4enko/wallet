@@ -3,4 +3,6 @@ export interface transactionsRequestDTO {
    transactionCategory: string
    comment: string
    transactionValue: number
+   isIncome?: boolean
+   idUser?: number
 }

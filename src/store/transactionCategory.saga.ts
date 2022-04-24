@@ -11,15 +11,6 @@ function* loadTransactionCategoryRequest() {
    }
 }
 
-// function* createTransactionCard(action: any) {
-//    try {
-//       yield call(createTransactionCardRequest(action.payload));
-//       yield put({ type: 'LOAD_TRANSACTIONS_REQUEST' })
-//    } catch (e: any) {
-//       yield put({ type: 'GET_USERS_FAILED', message: e.message })
-//    }
-// }
-
 function* deleteTransactionCategoryRequest(action: any) {
    try {
       yield call(deleteTransactionCategory, action.payload)
@@ -42,5 +33,4 @@ export default function* transactionCategorySaga() {
    yield takeEvery('LOAD_TRANSACTION_CATEGORY_REQUEST', loadTransactionCategoryRequest)
    yield takeEvery('DELETE_TRANSACTION_CATEGORY_REQUEST', deleteTransactionCategoryRequest)
    yield takeEvery('CHANGE_IN_MAIN_PAGE_REQUEST', changeInMainPageRequest)
-   // yield takeEvery('DELETE_TRANSACTION', deleteTransactionCard)
 }

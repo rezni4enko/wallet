@@ -8,13 +8,13 @@ import './Transaction.scss'
 const Transaction: React.FC = () => {
 
    let transaction = useSelector((state: any) => state.transactionIdReducer)
-   console.log(transaction)
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
    let params = useParams()
    const transactionId: any = params.id
-   console.log(transaction.created_at)
+
+   const data = String(transaction.created_at).split('T')
 
    useEffect(() => setTransactionById(), [])
 
@@ -47,7 +47,7 @@ const Transaction: React.FC = () => {
          </ul>
          <ul className="transaction-line">
             <li>Дата</li>
-            <li>{transaction.created_at}</li>
+            <li>{data[0]}</li>
          </ul>
          <ul className="transaction-line">
             <li>Комментарий</li>

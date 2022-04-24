@@ -5,7 +5,6 @@ import './TransactionBlock.scss'
 const TransactionBlock: React.FC<{ transactionCategory: any, transactionValue: number, id: number }>
    = ({ transactionCategory, transactionValue, id }) => {
 
-
       return <NavLink to={`/transaction/${id}`}
          className='card-action'
       >

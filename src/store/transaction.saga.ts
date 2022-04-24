@@ -2,16 +2,6 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { createTransactionCardRequest, fetchAllTransactions, deleteTransactionCardRequest, fetchTransactionById } from '../API/transactionApi';
 import { transactionsRequestDTO } from '../models/transactionsRequest.dto';
 
-// function* editTaskRequest(action: any) {
-//    try {
-//       yield put({ type: 'SET_IS_LOADING_NEW_ITEMS', payload: true })
-//       yield call(editTask, action.payload.id, action.payload.editName);
-//       yield put({ type: 'LOAD_ITEMS_REQUEST' })
-//    } catch (e: any) {
-//       yield put({ type: 'GET_USERS_FAILED', message: e.message })
-//    }
-// }
-
 function* loadTransactonsRequest() {
    try {
       const transactions: transactionsRequestDTO[] = yield call(fetchAllTransactions)
@@ -56,5 +46,4 @@ export default function* transactionSaga() {
    yield takeEvery('CREATE_TRANSACTION_CARD', createTransactionCard)
    yield takeEvery('DELETE_TRANSACTION', deleteTransactionCard)
    yield takeEvery('LOAD_TRANSACTION_REQUEST_BY_ID', loadTransactonRequestById)
-   // yield takeEvery('EDIT_TASK', editTaskRequest)
 }

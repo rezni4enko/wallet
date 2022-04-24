@@ -36,7 +36,7 @@ const TransactionCategories: React.FC = () => {
       const transactionCard = {
          transactionCategory: item.transactionCategory,
          comment: '',
-         transactionValue: currentValue,
+         transactionValue: Number(currentValue),
          isIncome: isIncome,
          idUser: 1
       }
@@ -114,13 +114,12 @@ const TransactionCategories: React.FC = () => {
          }
          <SettingsIcon onClick={() => setSettingActive(!settingActive)} color="action"></SettingsIcon>
       </div>
-      {
-         transaction.map((t: any) => <TransactionBlock
-            transactionCategory={t.transactionCategory}
-            key={t.id}
-            transactionValue={t.transactionValue}
-            id={t.id}
-         />)
+      {transaction.map((t: any) => <TransactionBlock
+         transactionCategory={t.transactionCategory}
+         key={t.id || 1}
+         transactionValue={t.transactionValue}
+         id={t.id}
+      />)
       }
       <SettingCategories
          setSettingActive={setSettingActive}

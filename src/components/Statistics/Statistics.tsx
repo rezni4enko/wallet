@@ -5,10 +5,8 @@ const Statistics: React.FC = () => {
 
    return <>
       <Navbar />
-      statistics
+      In this page will create statistics
    </>
-
 }
-
 
 export default Statistics

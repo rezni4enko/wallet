@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import SettingElement from './SettingElement/SettingElement'
 import './SettingCategories.scss'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import FormTransactionCategories from './SettingElement/FormTransactionCategories/FormTransactionCategories';
 
 const SettingCategories: React.FC<{ isIncome: boolean, transactionCategories: any, setSettingActive: any, settingActive: boolean }> = ({ isIncome, transactionCategories, settingActive, setSettingActive }) => {
 
    const [formAddCatogoryActive, setFormAddCatogoryActive] = useState(false)
-
 
    const addTransactionCategory = () => {
       setFormAddCatogoryActive(!formAddCatogoryActive)
@@ -32,13 +30,7 @@ const SettingCategories: React.FC<{ isIncome: boolean, transactionCategories: an
                }
             })
          }
-
       </div>
-      <FormTransactionCategories
-         formAddCatogoryActive={formAddCatogoryActive}
-         setFormAddCatogoryActive={setFormAddCatogoryActive}
-      />
-
    </div>
 }
 

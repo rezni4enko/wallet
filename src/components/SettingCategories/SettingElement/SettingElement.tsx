@@ -24,21 +24,12 @@ const SettingElement: React.FC<{ element: any, id: number, isInMainPage: boolean
             inMainPage: !isInMainPage
          }
       })
-
    }
 
    return <div className='settings-element'>
       <CloseIcon onClick={deleteElement} className='element-delete' />
       <div className='element-name'>{element}</div>
       <FormControlLabel className='element-checkbox' control={<Checkbox checked={isInMainPage} onChange={changeInMainPage} />} label="Отображать на главной странице" />
-      {/* <Checkbox
-         checked={isInMainPage}
-         //   onChange={handleChange}
-         //   inputProps={{ 'aria-label': 'controlled' }}
-         className='element-checkbox'
-         label="Отображать на главной странице"
-      /> */}
-
    </div>
 }
 

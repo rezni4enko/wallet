@@ -1,0 +1,42 @@
+.settings-header {
+   font-size: 35px;
+   margin: 0 0 50px 0;
+}
+.settings-categories {
+   display: grid;
+   gap: 20px;
+   grid-template-columns: 250px 250px 250px;
+   justify-items: center;
+   justify-content: center;
+}
+.settings-none {
+   display: none;
+}
+.settings {
+   position: relative;
+   bottom: 560px;
+   border: 3px solid #333;
+   border-radius: 3px;
+   width: 800px;
+   margin: 0 auto;
+   background: #fff;
+   padding: 20px;
+}
+.settings-close {
+   position: absolute;
+   right: 20px;
+   top: 10px;
+}
+.settings-close:hover {
+   background: rgb(228, 219, 211);
+}
+.add-transactioncategory {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 80%;
+   width: 60%;
+   :hover {
+      background: rgb(228, 219, 211);
+   }
+}

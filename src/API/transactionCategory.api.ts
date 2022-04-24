@@ -10,3 +10,10 @@ export const fetchTransactionCategory = () => {
          return response.data
       })
 }
+export const deleteTransactionCategory = (id: number) => {
+   return instance.delete(`/transactioncategory/${id}`)
+}
+
+export const changeInMainPage = (id: number, body: any) => {
+   return instance.patch(`/transactioncategory/${id}`, body)
+}

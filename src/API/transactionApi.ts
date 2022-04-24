@@ -22,13 +22,3 @@ export const fetchTransactionById = async (id: number) => {
    const response = await instance.get(`/transaction/${id}`)
    return response.data[0]
 }
-
-// export const loadTodo = async (): Promise<TodoDto[]> => {
-//    try {
-//       const response = await axios.get<TodoDto[]>('todo/getAll')
-//       return response.data
-//    } catch (err: any) {
-//       console.log(err)
-//       return []
-//    }
-// }

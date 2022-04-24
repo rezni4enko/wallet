@@ -26,7 +26,7 @@ function* loadTransactonRequestById(action: any) {
       const transactionId: transactionsRequestDTO[] = yield call(fetchTransactionById, action.payload)
       yield put({ type: 'SET_TRANSACTION_REQUEST_BY_ID', payload: transactionId })
    } catch (e: any) {
-      yield put({ type: 'GET_USERS_FAILED', message: e.message })
+      console.log('eror loadTransactonRequestById')
    }
 }
 
@@ -35,6 +35,7 @@ function* createTransactionCard(action: any) {
       yield call(createTransactionCardRequest, action.payload)
       yield put({ type: 'ZEROING_CALCULATE_VALUE' })
       yield put({ type: 'LOAD_TRANSACTIONS_REQUEST' })
+      yield put({ type: 'LOAD_MY_MONEY_REQUEST' })
    } catch (e: any) {
       console.log('eror createTransactionCardRequest')
    }
@@ -42,10 +43,10 @@ function* createTransactionCard(action: any) {
 
 function* deleteTransactionCard(action: any) {
    try {
-      yield call(deleteTransactionCardRequest(action.payload))
+      yield call(deleteTransactionCardRequest, action.payload)
       yield put({ type: 'LOAD_TRANSACTIONS_REQUEST' })
    } catch (e: any) {
-      yield put({ type: 'GET_USERS_FAILED', message: e.message })
+      console.log('error delete transaction')
 
    }
 }

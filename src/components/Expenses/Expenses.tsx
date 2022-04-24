@@ -6,14 +6,11 @@ import TransactionCategories from "../TransactionCategories/TransactionCategorie
 
 const Expenses: React.FC = () => {
 
-
-
    return <>
       <Navbar />
       <MyMoney />
       <Calculator />
       <TransactionCategories />
-
    </>
 }
 

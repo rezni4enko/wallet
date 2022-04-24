@@ -1,5 +1,4 @@
-import { CollectionsBookmarkOutlined, StarRate } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, } from "react-router-dom";
 import { fetchTransactionById } from "../../API/transactionApi";
@@ -9,14 +8,13 @@ import './Transaction.scss'
 const Transaction: React.FC = () => {
 
    let transaction = useSelector((state: any) => state.transactionIdReducer)
-   let state = useSelector((state: any) => state)
-   console.log(state)
-   // const [isChooseCategory, setIsChooseCategory] = useState(false)
+   console.log(transaction)
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
    let params = useParams()
    const transactionId: any = params.id
+   console.log(transaction.created_at)
 
    useEffect(() => setTransactionById(), [])
 
@@ -26,25 +24,7 @@ const Transaction: React.FC = () => {
          type: 'SET_TRANSACTION_REQUEST_BY_ID',
          payload: tr
       })
-      // dispatch({
-      //    type: 'LOAD_TRANSACTION_REQUEST_BY_ID',
-      //    payload: transactionId
-      // })
    }
-
-   // transaction = transaction.filter((item: any) => item.id === Number(params.id))
-   // transaction = transaction[0]
-
-   // const chooseCategory = () => {
-   //    setIsChooseCategory(true)
-   // }
-
-   // const setCategory = () => {
-   //    dispatch({
-   //       type: 'CHANGE_CATEGORY_TRANSACTION_CARD',
-   //       payload: params.id
-   //    })
-   // }
 
    const deleteTransaction = () => {
       dispatch({
@@ -67,23 +47,16 @@ const Transaction: React.FC = () => {
          </ul>
          <ul className="transaction-line">
             <li>Дата</li>
-            <li>{ }</li>
+            <li>{transaction.created_at}</li>
          </ul>
          <ul className="transaction-line">
             <li>Комментарий</li>
             <li>{transaction.comment || "---"}</li>
          </ul>
-         {/* {isChooseCategory &&
-            <div>
-               {transactionCategories.isIncome
-                  ? transactionCategories.income.map((item: any, index: number) =>
-                     <span key={index} onClick={}>{item}</span>)
-                  : transactionCategories.expenses.map((item: any, index: number) =>
-                     <span key={index} onClick={}>{item}</span>)}
-            </div>} */}
+
       </div>
       <button onClick={deleteTransaction}>Удалить</button>
-      <button onClick={setTransactionById}>get</button>
+
    </>
 }
 

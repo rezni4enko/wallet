@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './Calculator.scss'
 
 const Calculator: React.FC = () => {
-
 
    const dispatch = useDispatch()
    const inputValue = useSelector((state: any) => state.calculateReducer.value)

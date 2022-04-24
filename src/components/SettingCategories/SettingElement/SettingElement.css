@@ -1,0 +1,24 @@
+.settings-element {
+   width: 200px;
+   height: 100px;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   align-items: center;
+}
+
+.element-name {
+   font-size: 24px;
+   margin: 0 0 15px 0;
+}
+.element-delete {
+   position: absolute;
+   right: 0;
+}
+.element-delete:hover {
+   background: rgb(228, 219, 211);
+}
+
+.element-checkbox {
+   margin: 0 auto;
+}
